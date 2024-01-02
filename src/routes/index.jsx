@@ -15,6 +15,7 @@ const Loadable = (Component) => (props) => {
 const Register = Loadable(lazy(() => import("../screens/Authori/Register")));
 const Dashboard = Loadable(lazy(() => import("../screens/Dashboard")));
 const Login = Loadable(lazy(() => import("../screens/Authori/Login")));
+const Todo = Loadable(lazy(() => import("../screens/Todo")));
 // Dashboard
 
 export const router = createBrowserRouter([
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/todo",
+    element: <Todo />,
   }
 ]);
 

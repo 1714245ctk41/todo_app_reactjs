@@ -13,6 +13,10 @@
   }
 }
 
+a {
+  text-decoration: none !important;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -28,8 +32,8 @@
   color: #61dafb;
 }
 
-.container{
-  margin-top: 10%;
+.app-wraper{
+  margin: 10% auto auto auto;
   width: 600px;
   background: #fafafa;
   border-radius: 10px;
@@ -51,6 +55,14 @@
 
 .flex-end{
   justify-content: end;
+}
+
+.flex-space-between{
+  justify-content: space-between;
+}
+
+.align-item-center{
+  align-items: center;
 }
 
 .m-b-20{
@@ -80,7 +92,7 @@
 }
 
 .confirm_delete{
-  position: absolute;
+  position: fixed;
     border: 1px solid #dee2e6;
     z-index: 999;
     width: max-content;
@@ -99,4 +111,10 @@ body{
   background-image: url('../public/images/background.jpg');
   background-repeat: repeat;
     background-size: contain;
+}
+
+.btn-delete {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+
 }
