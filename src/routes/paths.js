@@ -3,7 +3,7 @@ export const path = ({ root, sublink }) => {
 };
 
 const ROOTS_AUTH = "/auth";
-const ROOTS_DASHBOARD = "/dashboard";
+const ROOTS_DASHBOARD = "/";
 
 export const PATH_AUTH = {
   root: ROOTS_AUTH,

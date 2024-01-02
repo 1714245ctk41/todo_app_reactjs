@@ -1,41 +1,54 @@
 import { useContext, useEffect, useState } from 'react';
 import TodoList from '../../components/TodoList';
 import Author from '../Authori';
-import "./index.css";
-import { ACTIONS, AppContext } from '../../hooks/useContext';
+import './index.css';
+import {  AppContext } from '../../hooks/useContext';
 import { getLocalStorage } from '../../utils/localstorage';
 import { TOKEN_KEY } from '../../constans';
+import { useNavigate } from 'react-router-dom';
+import { getAllTodo, getProfile } from '../../utils/apiHandle';
+import { Alert } from 'react-bootstrap';
+import { ACTIONS_AUTHOR } from '../../hooks/useApp';
 
-
-const Dashboard = ({ }) => {
+const Dashboard = ({}) => {
   const { state, dispatch } = useContext(AppContext);
-  
-  useEffect(() => {
-      const token = getLocalStorage(TOKEN_KEY);
-      console.log(token, 'tokentoken');
-      if (token) {
-      console.log(token, 'tokentoken');
-      dispatch({
-        type: ACTIONS.AUTHOR,
-        payload: {
-          name: 'test',
-          email: 'test@gmail.com',
-          token: token,
-        }
-      })
-    }
-  }, [dispatch]);
-  
-  console.log(state, !state || (state && !state.user), 'useruseruserudashboard');
-  return (
-    <div >
-      
-      {!state || (state && !state.user) ? <Author /> : 
-      <TodoList />
-    }
-      
-    </div>
-    )
-}
+  const [contentAlert, setContentAlert] = useState('');
+  const navigate = useNavigate();
 
-export default Dashboard
+  useEffect(() => {
+    const token = getLocalStorage(TOKEN_KEY);
+    if (token) {
+      const getUser = async () => {
+
+        const res = await getProfile(token);
+        if (!res.status) {
+          setContentAlert(res.errors[0]);
+          return;
+        }
+        dispatch({
+          type: ACTIONS_AUTHOR.AUTHOR,
+          payload: {
+            ...res.data,
+            token,
+          },
+        });
+      };
+      getUser();
+    } else {
+      navigate('/login');
+    }
+  }, []);
+
+  return (
+    <div>
+      <TodoList />
+      {contentAlert && (
+        <Alert variant={'danger'} id='alert'>
+          {contentAlert}
+        </Alert>
+      )}
+    </div>
+  );
+};
+
+export default Dashboard;

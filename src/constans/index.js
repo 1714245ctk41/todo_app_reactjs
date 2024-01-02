@@ -1,9 +1,11 @@
 
-export const LOCALHOST = 'http://localhost:8080'
+export const DOMAIN = 'http://146.190.109.138:8080/api/';
 
 export const APIS = {
-  REGISTER: LOCALHOST + '/api/auth/register',
-  LOGIN: LOCALHOST + '/api/auth/login'
+  REGISTER: DOMAIN + 'auth/register',
+  LOGIN: DOMAIN + 'auth/login',
+  GETPROFILE: DOMAIN + 'user/profile',
+  GETTODOS: DOMAIN + 'books/'
 }
 
 export const TOKEN_KEY = 'token'

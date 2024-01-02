@@ -1,19 +1,13 @@
+import { TOKEN_KEY } from '../constans';
 import { getLocalStorage } from './localstorage';
 
 export const fetchCustom = async ({input, init}) => {
   const headers = {};
 
   if (init?.authorization) {
-    headers['Authorization'] = getLocalStorage('token');
+    headers['Authorization'] = getLocalStorage(TOKEN_KEY);
   }
   
-  console.log({
-    ...init,
-    headers: {
-      ...headers,
-      ...init?.headers,
-    },
-  }, 4234);
   const rs = await fetch(input, {
     ...init,
     headers: {
